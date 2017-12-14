@@ -20,8 +20,8 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="{%url 'index' %}">Your Groups<span class="sr-only">(current)</span></a></li>
-        <li><a href="{%url 'other_groups' %}">Other Groups</a>
-        <li class="active"><a href="#">Create Group</a>
+        <li class="active"><a href="#">Other Groups</a>
+        <li><a href="{%url 'create_group' %}">Create Group</a>
         <li><a href="{%url 'chat' %}">Chat</a>
 	</li>
       </ul>
@@ -36,33 +36,15 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
-
-<div class="row">
   <div class="container-fluid">
-    <h3>Create your own group!</h3>
-    <form action="" method="post">
-      <div class="row">
-        <div class="container-fluid">
-          {% csrf_token %}
-          {{ form.as_p }}
-          {{ form.errors }}
-        </div>
-        <div class="container-fluid">
-          <p><input  type="submit" value="Submit"/></p>
-        </div>
-        <div class="container-fluid">
-	{% for user in users %}
-		{{user.username}}
-	{% endfor%}
-	</div>
-      </div>
-    </form>
+    <ul style="margin-left: 0.2in;">
+    {% for Group in posts %}
+    	<h1>{{ Group.name }}:</h1><br />
+	{{ Group.description }}<br />
+	Created by {{Group.user}} on {{ Group.created }}<br />
+    {% endfor %}
+    </ul>
   </div>
-</div>
-
-
-
 </div>
 {% else %}
     <h1>Welcome to our site</h1>

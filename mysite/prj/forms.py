@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
+from prj.models import Group
 from django.core.validators import validate_slug
 
 class CreateUserForm(UserCreationForm):
@@ -26,17 +27,19 @@ class SubmissionForm(forms.Form):
         widget=forms.TextInput(attrs={'size':'100', 'class':"large-6.columns"}))
 
 class GroupForm(forms.ModelForm):
-    Name = forms.CharField(
-        max_length=50,
-        validators=[validate_slug],
-        required=True,
-        widget=forms.TextInput(attrs={'size':'125', 'class':"large-6.columns"}))
-    Description = forms.CharField(max_length=100,
-        validators=[validate_slug],
-        required=True,
-        widget=forms.TextInput(attrs={'size':'120', 'class':"large-6.columns"}))
-"""
+    name=forms.CharField(widget=forms.TextInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'Name your group here...',
+        }
+    ))
+    description=forms.CharField(widget=forms.TextInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'Describe what your group is about here...',
+        }
+    ))
+
     class Meta:
         model = Group
-        fields = ('Group',)
-"""
+        fields = ('name', 'description')

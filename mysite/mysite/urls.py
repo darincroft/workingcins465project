@@ -18,11 +18,14 @@ from django.contrib import admin
 from prj import views as prj_views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^prj/', include('prj.urls')),
-    url(r'^$', prj_views.IndexView.as_view(), name = 'index'),
+    #url(r'^prj/', include('prj.urls')),
+    url(r'^$', prj_views.IndexView, name = 'index'),
+    url(r'^prj/$', prj_views.IndexView, name = 'index'),
     url(r'^prj/create_group/', prj_views.CreateGroupView, name = 'create_group'),
+    url(r'^prj/other_groups/', prj_views.OtherGroupsView, name = 'other_groups'),
     url(r'^prj/chat/', prj_views.chat_view.as_view(), name = 'chat'),
     url(r'^accounts/', include('django.contrib.auth.urls')),
     url(r'^accounts/signup$', prj_views.CreateUserView.as_view(), name = 'signup'),
-    url(r'^accounts/login/done$', prj_views.RegisteredView.as_view(), name = 'create_user_done')       
+    url(r'^accounts/login/$', prj_views.LogInView.as_view(), name = 'login'),       
+    url(r'^accounts/login/done$', prj_views.RegisteredView.as_view(), name = 'create_user_done'),
 ]

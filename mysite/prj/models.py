@@ -9,11 +9,10 @@ class submissions(models.Model):
     class Meta:
         ordering = ["date"]
 
-"""
 class Group(models.Model):
     name=models.CharField(max_length=50)
     description=models.CharField(max_length=100)
-    #date=models.DateTimeField()
-"""
+    user=models.ForeignKey(User)
+    created = models.DateTimeField(auto_now_add=True)
 
 # Create your models here.
